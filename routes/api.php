@@ -16,3 +16,11 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::group(['middleware' => 'cors'], function(){
+    // Reminders API Routes without Token.
+    Route::get('reminders', 'RemindersController@index');
+    Route::get('reminders/{reminder}', 'RemindersController@show');
+    // Reminders API routes without Token.
+    Route::post('reminders', 'RemindersController@store');
+});
